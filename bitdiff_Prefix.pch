@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'bitdiff' target in the 'bitdiff' project.
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

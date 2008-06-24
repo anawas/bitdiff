@@ -1,0 +1,161 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeArchitecture = i386;
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 69F76D540E0A917300A5595A /* bitdiff */;
+		activeTarget = 8DD76F960486AA7600D96B5E /* bitdiff */;
+		breakpoints = (
+		);
+		codeSenseManager = 69F76D5C0E0A919200A5595A /* Code sense */;
+		executables = (
+			69F76D540E0A917300A5595A /* bitdiff */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					609,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 235987597;
+			PBXWorkspaceStateSaveDate = 235987597;
+		};
+		perUserProjectItems = {
+			691567070E10E2900007A80F /* PBXTextBookmark */ = 691567070E10E2900007A80F /* PBXTextBookmark */;
+			6995CDD10E0ABBD1002B3CF7 /* PBXTextBookmark */ = 6995CDD10E0ABBD1002B3CF7 /* PBXTextBookmark */;
+			69F76D600E0A926800A5595A /* PBXTextBookmark */ = 69F76D600E0A926800A5595A /* PBXTextBookmark */;
+			69F76D620E0A926800A5595A /* PBXTextBookmark */ = 69F76D620E0A926800A5595A /* PBXTextBookmark */;
+			69F76D630E0A926800A5595A /* PBXTextBookmark */ = 69F76D630E0A926800A5595A /* PBXTextBookmark */;
+		};
+		sourceControlManager = 69F76D5B0E0A919200A5595A /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* bitdiff.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {787, 3150}}";
+			sepNavSelRange = "{1674, 0}";
+			sepNavVisRange = "{1672, 1347}";
+			sepNavWindowFrame = "{{15, 196}, {713, 977}}";
+		};
+	};
+	691567070E10E2900007A80F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* bitdiff.m */;
+		name = "bitdiff.m: 70";
+		rLen = 0;
+		rLoc = 1674;
+		rType = 0;
+		vrLen = 1347;
+		vrLoc = 1672;
+	};
+	6995CDD10E0ABBD1002B3CF7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* bitdiff.m */;
+		name = "bitdiff.m: 71";
+		rLen = 0;
+		rLoc = 1674;
+		rType = 0;
+		vrLen = 1425;
+		vrLoc = 1707;
+	};
+	69F76D540E0A917300A5595A /* bitdiff */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = bitdiff;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	69F76D5B0E0A919200A5595A /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	69F76D5C0E0A919200A5595A /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	69F76D600E0A926800A5595A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C6859EA3029092ED04C91782 /* bitdiff.1 */;
+		name = "bitdiff.1: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1683;
+		vrLoc = 0;
+	};
+	69F76D620E0A926800A5595A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* bitdiff.m */;
+		name = "bitdiff.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 234;
+		vrLoc = 0;
+	};
+	69F76D630E0A926800A5595A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C6859EA3029092ED04C91782 /* bitdiff.1 */;
+		name = "bitdiff.1: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1683;
+		vrLoc = 0;
+	};
+	8DD76F960486AA7600D96B5E /* bitdiff */ = {
+		activeExec = 0;
+		executables = (
+			69F76D540E0A917300A5595A /* bitdiff */,
+		);
+	};
+	C6859EA3029092ED04C91782 /* bitdiff.1 */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {609, 1036}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1683}";
+		};
+	};
+}
