@@ -17,6 +17,7 @@
 #define USAGE		"file1 file2"
 
 uint32_t bitArray[8];
+uint32_t counter;
 
 /*!
     @function
@@ -76,21 +77,22 @@ void printBitArray() {
 				False otherwise.
 */
 BOOL bitsEqual (uint8_t value1, uint8_t value2) {
-	int counter;
+	int cnt;
 	BOOL isEqual;
 	
 	isEqual = YES;
-	counter = 0;
+	cnt = 0;
 	
-	while (++counter <= 8) { 
+	while (++cnt <= 8) { 
 		if ((value1 & 0x1) != (value2 & 0x1)) {
 			if (isEqual) {
-				printf("\n\nDifferent bits at position: ");
+				printf("\n\nBit error in byte %ld\n", counter);
+				printf("Different bits at position: ");
 				isEqual = NO;
 			}
 
-			++bitArray[counter-1];
-			printf("%d ", counter);
+			++bitArray[cnt-1];
+			printf("%d ", cnt);
 		}
 		value1 >>= 1;
 		value2 >>= 1;
@@ -175,12 +177,12 @@ NSString *convertToBinary (uint8_t value) {
 	uint8_t *charBuf1 = malloc(1 * sizeof(char));
 	uint8_t *charBuf2 = malloc(1 * sizeof(char));
 	
-	uint32_t counter = 0;
-	
 	[origFile open];
 	[rescanFile open];
 	
 	initBitArray();
+	counter = 0;
+
 	while (([origFile hasBytesAvailable]) && 
 				 ([rescanFile hasBytesAvailable])) {
 		[origFile read:charBuf1 maxLength: 1];
