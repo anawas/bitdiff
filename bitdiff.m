@@ -16,9 +16,9 @@
 static char version[] = "This is bitdiff Version 0.9";
 static char build[]		= "build:20080310:1200";
 static char usage[]		= "\nusage: bitdiff [-v | -stat | -stop] file1 file2\n";
-const uint8_t message[40] = "<<<< First differnce! Should be ";
 
 uint32_t bitArray[8];
+unit32_t errorArray[8];
 uint32_t counter;
 BOOL verbose;
 
@@ -182,6 +182,8 @@ int compareFileLength(NSString *fname1, NSString *fname2) {
 	 BOOL stats = NO;
 	 BOOL stopp = NO;
 	 
+	 uint8_t message[128];
+	 
 	 NSString *inf1 = NULL;
 	 NSString *inf2 = NULL;
 	 
@@ -264,8 +266,9 @@ int compareFileLength(NSString *fname1, NSString *fname2) {
 				printf("\nExpected: %s (%c)  ", [[NSString  stringWithString: convertToBinary(charBuf1[0])] UTF8String], charBuf1[0]);
 				printf("but found: %s (%c)", [[NSString  stringWithString: convertToBinary(charBuf2[0])] UTF8String], charBuf2[0]);
 			}
-			//[logfile write:message maxLength:sizeof(message)];
-			//[logfile write:charBuf1 maxLength:1];
+			
+			sprintf(message, "<<< Difference! Should be %c\n\0", charBuf1[0]);
+			[logfile write:message maxLength:30];
 			
 			if (stopp) {
 				printf("\nComparison stopped because of -stop option");

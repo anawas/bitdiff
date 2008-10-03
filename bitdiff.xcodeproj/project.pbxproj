@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = doc;
+			path = doc;
 			sourceTree = "<group>";
 		};
 		C6859EA2029092E104C91782 /* Documentation */ = {

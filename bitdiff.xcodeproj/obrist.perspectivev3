@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ActivePerspectiveName</key>
-	<string>Project</string>
+	<string>Debug</string>
 	<key>AllowedModules</key>
 	<array>
 		<dict>
@@ -265,7 +265,7 @@
 						<key>_historyCapacity</key>
 						<integer>10</integer>
 						<key>bookmark</key>
-						<string>69570DF30E965479001C90EA</string>
+						<string>69570E220E965C13001C90EA</string>
 						<key>history</key>
 						<array>
 							<string>69570DDE0E965146001C90EA</string>
@@ -363,16 +363,18 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>08FB7794FE84155DC02AAC07</string>
+								<string>69570DF60E96548D001C90EA</string>
 								<string>08FB7795FE84155DC02AAC07</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>69570DC80E964ABE001C90EA</string>
 								<string>69570DC90E964ABE001C90EA</string>
 								<string>1C37FAAC04509CD000000102</string>
+								<string>1C08E77C0454961000C914BD</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>13</integer>
+									<integer>14</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -394,8 +396,6 @@
 							<string>MainColumn</string>
 							<real>163</real>
 						</array>
-						<key>RubberWindowFrame</key>
-						<string>160 67 1658 1111 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -406,8 +406,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -425,13 +423,13 @@
 										<key>_historyCapacity</key>
 										<integer>10</integer>
 										<key>bookmark</key>
-										<string>69570DF20E965479001C90EA</string>
+										<string>69570E210E965C13001C90EA</string>
 										<key>history</key>
 										<array>
 											<string>69F76D600E0A926800A5595A</string>
 											<string>69570BDD0E961434001C90EA</string>
 											<string>69570BDE0E961434001C90EA</string>
-											<string>69570DE10E965193001C90EA</string>
+											<string>69570E1E0E965BE9001C90EA</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -455,8 +453,6 @@
 							<dict>
 								<key>Frame</key>
 								<string>{{0, 0}, {1451, 746}}</string>
-								<key>RubberWindowFrame</key>
-								<string>160 67 1658 1111 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -509,7 +505,7 @@
 										<dict>
 											<key>PBXCVSModuleTreeModuleColumnWidthsKey</key>
 											<array>
-												<real>819</real>
+												<real>835</real>
 												<real>56</real>
 												<real>63</real>
 												<real>60</real>
@@ -555,8 +551,6 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {1451, 293}}</string>
-										<key>RubberWindowFrame</key>
-										<string>160 67 1658 1111 0 0 1920 1178 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXBuildResultsModule</string>
@@ -627,6 +621,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
@@ -638,6 +634,8 @@
 					<dict>
 						<key>Frame</key>
 						<string>{{0, 0}, {1658, 534}}</string>
+						<key>RubberWindowFrame</key>
+						<string>160 67 1658 1111 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugCLIModule</string>
@@ -712,7 +710,11 @@
 							</array>
 							<key>Frame</key>
 							<string>{{0, 265}, {830, 266}}</string>
+							<key>RubberWindowFrame</key>
+							<string>160 67 1658 1111 0 0 1920 1178 </string>
 						</dict>
+						<key>RubberWindowFrame</key>
+						<string>160 67 1658 1111 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugSessionModule</string>
@@ -757,7 +759,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>244733049.04648101</real>
+	<real>244734995.417889</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
