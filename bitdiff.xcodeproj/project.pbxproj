@@ -6,6 +6,20 @@
 	objectVersion = 44;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		69570D1F0E964A7F001C90EA /* makedoc */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 69570D4B0E964A9D001C90EA /* Build configuration list for PBXAggregateTarget "makedoc" */;
+			buildPhases = (
+				69570D1E0E964A7F001C90EA /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = makedoc;
+			productName = makedoc;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8DD76F9A0486AA7600D96B5E /* bitdiff.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* bitdiff.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
@@ -48,6 +62,7 @@
 		08FB7794FE84155DC02AAC07 /* bitdiff */ = {
 			isa = PBXGroup;
 			children = (
+				69570DF60E96548D001C90EA /* doc */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				C6859EA2029092E104C91782 /* Documentation */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
@@ -79,6 +94,13 @@
 				8DD76FA10486AA7600D96B5E /* bitdiff */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		69570DF60E96548D001C90EA /* doc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = doc;
 			sourceTree = "<group>";
 		};
 		C6859EA2029092E104C91782 /* Documentation */ = {
@@ -123,9 +145,26 @@
 			projectRoot = "";
 			targets = (
 				8DD76F960486AA7600D96B5E /* bitdiff */,
+				69570D1F0E964A7F001C90EA /* makedoc */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		69570D1E0E964A7F001C90EA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here\n#\ncd doc\nheaderdoc2html -C -h -o ../doc ..\ngatherheaderdoc .\n#\nexit 0";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8DD76F990486AA7600D96B5E /* Sources */ = {
@@ -191,6 +230,27 @@
 			};
 			name = Release;
 		};
+		69570D200E964A7F001C90EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = makedoc;
+			};
+			name = Debug;
+		};
+		69570D210E964A7F001C90EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = makedoc;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -208,6 +268,15 @@
 			buildConfigurations = (
 				1DEB927908733DD40010E9CD /* Debug */,
 				1DEB927A08733DD40010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		69570D4B0E964A9D001C90EA /* Build configuration list for PBXAggregateTarget "makedoc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69570D200E964A7F001C90EA /* Debug */,
+				69570D210E964A7F001C90EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

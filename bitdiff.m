@@ -11,21 +11,22 @@
 */
 
 #import <Foundation/Foundation.h>
+#import <string.h>
 
-#define VERSION		"This is bitdiff Version 0.9"
-#define BUILD		"libtiff:build:20082006:1830"
-#define USAGE		"file1 file2"
+static char version[] = "This is bitdiff Version 0.9";
+static char build[]		= "build:20080310:1200";
+static char usage[]		= "\nusage: bitdiff [-v | -stat | -stop] file1 file2\n";
+const uint8_t message[40] = "<<<< First differnce! Should be ";
 
 uint32_t bitArray[8];
 uint32_t counter;
+BOOL verbose;
 
 /*!
     @function
     @abstract   Clears the bit counting array
     @discussion The application uses a array to store the frequency of each different bit.
 				This aray is initialized (i.e. set to zero) here. 
-    @param      none
-    @result     none
 */
 void initBitArray() {
 	int i;
@@ -39,8 +40,6 @@ void initBitArray() {
     @abstract   Prints out the bit array
     @discussion The contents of the bit array are print out to the screen. There is
 				also a small statistics.
-    @param      none
-    @result     none
 */
 void printBitArray() {
 	int i;
@@ -86,13 +85,15 @@ BOOL bitsEqual (uint8_t value1, uint8_t value2) {
 	while (++cnt <= 8) { 
 		if ((value1 & 0x1) != (value2 & 0x1)) {
 			if (isEqual) {
-				printf("\n\nBit error in byte %ld\n", counter);
-				printf("Different bits at position: ");
+				if (verbose) {
+					printf("\n\nBit error in byte %ld\n", counter);
+					printf("Different bits at position: ");
+				}
 				isEqual = NO;
 			}
 
 			++bitArray[cnt-1];
-			printf("%d ", cnt);
+			if (verbose) printf("%d ", cnt);
 		}
 		value1 >>= 1;
 		value2 >>= 1;
@@ -138,27 +139,93 @@ NSString *convertToBinary (uint8_t value) {
 	return binVal;
 }
 
+/*!
+    @function
+    @abstract   Compares the length of two files.
+    @discussion	Comparing two files bit by bit makes sense only if the files
+			have the same length. Otherwise the result of the comparison may be
+			misinterpreted. If the file size differs due to a missing byte at some
+			point in one of the files the comparison after this point will report
+			nothing but errors. 
+			
+    @param  fname1 The name of the first file to compare
+		@param	fname2 The name of the second file to compare
+    @result The function returns a number indicating the difference 
+		(length(file1) - length(file2)) in bytes of the two files, i.e.
+		<ul>
+		<li> 0, if both file have equal length
+		<li> a positive number if file 1 is bigger than file 1
+		<li> a negative number if file 1 is smaller than file 2
+		</ul>
+*/
+
+int compareFileLength(NSString *fname1, NSString *fname2) {
+	unsigned long long length1;
+	unsigned long long length2;
+	
+	NSFileHandle *file1 = [NSFileHandle fileHandleForReadingAtPath:fname1];
+	length1 = [file1 seekToEndOfFile];
+	[file1 closeFile];
+	
+	NSFileHandle *file2 = [NSFileHandle fileHandleForReadingAtPath:fname2];
+	length2 = [file2 seekToEndOfFile];
+	[file2 closeFile];
+	
+		return (length1 - length2);
+}
+
 /*********************************************************************/
-/*** main program												   ***/
+/*** main program																									 ***/
 /*********************************************************************/
  int main (int argc, const char * argv[]) {
+	 int i;
+	 BOOL stats = NO;
+	 BOOL stopp = NO;
+	 
+	 NSString *inf1 = NULL;
+	 NSString *inf2 = NULL;
+	 
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
-	fprintf(stdout, "%s\n%s\n", VERSION, BUILD);
+	fprintf(stdout, "%s\n%s\n", version, build);
 	
-	if (argc <= 1) {
-		fprintf(stdout, "Usage: %s %s\n", argv[0], USAGE);
+	 //
+	 // Command line processing
+	 //
+	 if (argc <= 1) {
+		fprintf(stdout, "%s %s", argv[0], usage);
 		exit (1);
-	}
+	 }
 	
+	 for (i = 1; i < argc; i++) {
+		 if (strcmp (argv[i], "-v") == 0) {
+			 verbose = YES;
+		 } else if (strcmp (argv[i], "-stats") == 0) {
+			 stats = YES;
+		 } else if (strcmp (argv[i], "-stop") == 0) {
+			 stopp = YES;
+		 } else {
+			 if (inf1 == NULL) {
+				 inf1 = [NSString stringWithUTF8String:argv[i]];
+			 } else {
+				 inf2 = [NSString stringWithUTF8String:argv[i]];
+			 }
+		 }
+	 }
+	 
 	 uint16_t nBitErrors = 0;
 	 
-	NSString *inf1 = [NSString stringWithUTF8String: argv[1]];
-	NSString *inf2 = [NSString stringWithUTF8String: argv[2]];
-
 	NSInputStream *origFile = NULL;
 	NSInputStream *rescanFile = NULL;
+	NSOutputStream *logfile = NULL;
 	
+	logfile = [NSOutputStream outputStreamToFileAtPath:@"/temp/bitdiff.log" append:NO];
+	 
+	 if (compareFileLength (inf1, inf2) != 0) {
+		 printf("Files differ in size. Do you want to continue?");
+		 exit(-2);
+	 } 
+	 
 	NSLog(@"open %@ ...", inf1);
 	origFile = [NSInputStream inputStreamWithFileAtPath: inf1];
 	if (origFile == nil) {
@@ -173,12 +240,13 @@ NSString *convertToBinary (uint8_t value) {
 		goto cleanup;
 	}
 	
-	// A buffer to hold one character
+	// A buffer to hold one character/byte
 	uint8_t *charBuf1 = malloc(1 * sizeof(char));
 	uint8_t *charBuf2 = malloc(1 * sizeof(char));
 	
 	[origFile open];
 	[rescanFile open];
+	[logfile open];
 	
 	initBitArray();
 	counter = 0;
@@ -188,14 +256,26 @@ NSString *convertToBinary (uint8_t value) {
 		[origFile read:charBuf1 maxLength: 1];
 		[rescanFile read:charBuf2 maxLength: 1];
 		
+		[logfile write:charBuf2 maxLength:1];
+		
 		if (bitsEqual(charBuf1[0], charBuf2[0]) == NO) {
 			++nBitErrors;
-			printf("\nExpected: %s (%c)  ", [[NSString  stringWithString: convertToBinary(charBuf1[0])] UTF8String], charBuf1[0]);
-			printf("but found: %s (%c)", [[NSString  stringWithString: convertToBinary(charBuf2[0])] UTF8String], charBuf2[0]);
+			if (verbose) {
+				printf("\nExpected: %s (%c)  ", [[NSString  stringWithString: convertToBinary(charBuf1[0])] UTF8String], charBuf1[0]);
+				printf("but found: %s (%c)", [[NSString  stringWithString: convertToBinary(charBuf2[0])] UTF8String], charBuf2[0]);
+			}
+			//[logfile write:message maxLength:sizeof(message)];
+			//[logfile write:charBuf1 maxLength:1];
+			
+			if (stopp) {
+				printf("\nComparison stopped because of -stop option");
+				break;
+			}
 		}
 		++counter;
 	}
 
+	 [logfile close];
 	[origFile close];
 	[rescanFile close];
 	
@@ -203,7 +283,9 @@ NSString *convertToBinary (uint8_t value) {
 	
 	if (nBitErrors != 0) {
 		fprintf(stdout, "%d bytes with bit error(s) detected (%2.2f%%)\n\n", nBitErrors, ((float)nBitErrors/counter)*100.0);
-		printBitArray();
+		if (stats) {
+			printBitArray();
+		}
 	} else {
 		fprintf(stdout, "NO bit errors detected. Files seem to be identical.\n\n");
 	}
