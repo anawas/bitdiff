@@ -1,6 +1,6 @@
 /*!
     @header bitdiff.m
-    @abstract   Compares to files bitwise.
+    @abstract   Compares two files bitwise.
     @discussion The standard UNIX tool to compare two files is 'diff' (see
 	manual pages 'man diff' for further information). This tool reports the 
 	differences between two files. It can handle any type of files and does a
@@ -12,13 +12,14 @@
 
 #import <Foundation/Foundation.h>
 #import <string.h>
+#import <stdio.h>
 
-static char version[] = "This is bitdiff Version 0.9";
-static char build[]		= "build:20080310:1200";
+static char version[] = "This is bitdiff Version 1.0";
+static char build[]		= "build:20090910:0900";
 static char usage[]		= "\nusage: bitdiff [-v | -stat | -stop] file1 file2\n";
 
 uint32_t bitArray[8];
-unit32_t errorArray[8];
+uint32_t errorArray[8];
 uint32_t counter;
 BOOL verbose;
 
@@ -215,6 +216,12 @@ int compareFileLength(NSString *fname1, NSString *fname2) {
 		 }
 	 }
 	 
+	 if ((inf1 == NULL) || (inf2 == NULL)) {
+		 fprintf(stderr, "ERROR -- missing filename");
+		 fprintf(stdout, "%s\n", usage);
+		 exit(-2);
+	 }
+	 
 	 uint16_t nBitErrors = 0;
 	 
 	NSInputStream *origFile = NULL;
@@ -225,7 +232,9 @@ int compareFileLength(NSString *fname1, NSString *fname2) {
 	 
 	 if (compareFileLength (inf1, inf2) != 0) {
 		 printf("Files differ in size. Do you want to continue?");
-		 exit(-2);
+		 char ch = getchar();
+		 if ((ch == 'n') || (ch == 'N'))
+			 exit(-2);
 	 } 
 	 
 	NSLog(@"open %@ ...", inf1);
