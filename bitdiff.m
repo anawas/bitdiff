@@ -49,20 +49,20 @@ void printBitArray() {
 	fprintf(stdout, "\n\nStatistics on found bit errors:\n");
 	fprintf(stdout, "===============================\n");
 	for (i = 0; i < 8; i++) {
-		fprintf(stdout, " %4d |", i+1);
+		fprintf(stdout, " %6d |", i+1);
 	}
 	
 	fprintf(stdout, "\n");
 
 	for (i = 0; i < 8; i++) {
-		fprintf(stdout, " %d |", bitArray[i]);
+		fprintf(stdout, " %6d |", bitArray[i]);
 		nErrors += bitArray[i];
 	}	
 
 	fprintf(stdout, "\n");
 
 	for (i = 0; i < 8; i++) {
-		fprintf(stdout, " %0.2f%% |", (bitArray[i] / (float)nErrors)*100.0);
+		fprintf(stdout, " %4.2f%% |", (bitArray[i] / (float)nErrors)*100.0);
 	}	
 }
 
@@ -291,7 +291,7 @@ int compareFileLength(NSString *fname1, NSString *fname2) {
 	[origFile close];
 	[rescanFile close];
 	
-	fprintf(stdout, "\n\nBytes compared: %d\n", counter);
+	fprintf(stdout, "\n\nBytes compared: %d\n", --counter);
 	
 	if (nBitErrors != 0) {
 		fprintf(stdout, "%d bytes with bit error(s) detected (%2.2f%%)\n\n", nBitErrors, ((float)nBitErrors/counter)*100.0);
