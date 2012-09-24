@@ -127,7 +127,11 @@
 				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "bitdiff" */;
+<<<<<<< HEAD
 			compatibilityVersion = "Xcode 3.2";
+=======
+			compatibilityVersion = "Xcode 3.0";
+>>>>>>> 9359441404ed46ca09f17a46ca6ba0bb933b1f60
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -167,7 +171,11 @@
 				INSTALL_PATH = /usr/local/bin;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = bitdiff;
+<<<<<<< HEAD
 				SDKROOT = macosx;
+=======
+				SDKROOT = macosx10.7;
+>>>>>>> 9359441404ed46ca09f17a46ca6ba0bb933b1f60
 				ZERO_LINK = YES;
 			};
 			name = Debug;
@@ -183,7 +191,11 @@
 				INSTALL_PATH = /usr/local/bin;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = bitdiff;
+<<<<<<< HEAD
 				SDKROOT = macosx;
+=======
+				SDKROOT = macosx10.7;
+>>>>>>> 9359441404ed46ca09f17a46ca6ba0bb933b1f60
 			};
 			name = Release;
 		};

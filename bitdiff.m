@@ -14,8 +14,8 @@
 #import <string.h>
 #import <stdio.h>
 
-static char version[] = "This is bitdiff Version 1.0";
-static char build[]		= "build:20090910:0900";
+static char version[] = "This is bitdiff Version 1.1";
+static char build[]		= "build:20092012:1600";
 static char usage[]		= "\nusage: bitdiff [-v | -stat | -stop] file1 file2\n";
 
 uint32_t bitArray[8];
@@ -49,20 +49,20 @@ void printBitArray() {
 	fprintf(stdout, "\n\nStatistics on found bit errors:\n");
 	fprintf(stdout, "===============================\n");
 	for (i = 0; i < 8; i++) {
-		fprintf(stdout, " %4d |", i+1);
+		fprintf(stdout, " %6d |", i+1);
 	}
 	
 	fprintf(stdout, "\n");
 
 	for (i = 0; i < 8; i++) {
-		fprintf(stdout, " %d |", bitArray[i]);
+		fprintf(stdout, " %6d |", bitArray[i]);
 		nErrors += bitArray[i];
 	}	
 
 	fprintf(stdout, "\n");
 
 	for (i = 0; i < 8; i++) {
-		fprintf(stdout, " %0.2f%% |", (bitArray[i] / (float)nErrors)*100.0);
+		fprintf(stdout, " %4.2f%% |", (bitArray[i] / (float)nErrors)*100.0);
 	}	
 }
 
@@ -87,7 +87,7 @@ BOOL bitsEqual (uint8_t value1, uint8_t value2) {
 		if ((value1 & 0x1) != (value2 & 0x1)) {
 			if (isEqual) {
 				if (verbose) {
-					printf("\n\nBit error in byte %u\n", counter);
+					printf("\n\nBit error in byte %d\n", counter);
 					printf("Different bits at position: ");
 				}
 				isEqual = NO;
@@ -183,7 +183,7 @@ int compareFileLength(NSString *fname1, NSString *fname2) {
 	 BOOL stats = NO;
 	 BOOL stopp = NO;
 	 
-	 uint8_t message[128];
+	 char message[128];
 	 
 	 NSString *inf1 = NULL;
 	 NSString *inf2 = NULL;
@@ -276,8 +276,8 @@ int compareFileLength(NSString *fname1, NSString *fname2) {
 				printf("but found: %s (%c)", [[NSString  stringWithString: convertToBinary(charBuf2[0])] UTF8String], charBuf2[0]);
 			}
 			
-			sprintf((char *)message, "<<< Difference! Should be %c\n", charBuf1[0]);
-			[logfile write:message maxLength:30];
+			sprintf(message, "<<< Difference! Should be %c\n", charBuf1[0]);
+			[logfile write:(uint8_t *)message maxLength:30];
 			
 			if (stopp) {
 				printf("\nComparison stopped because of -stop option");
@@ -291,7 +291,7 @@ int compareFileLength(NSString *fname1, NSString *fname2) {
 	[origFile close];
 	[rescanFile close];
 	
-	fprintf(stdout, "\n\nBytes compared: %u\n", counter);
+	fprintf(stdout, "\n\nBytes compared: %d\n", --counter);
 	
 	if (nBitErrors != 0) {
 		fprintf(stdout, "%d bytes with bit error(s) detected (%2.2f%%)\n\n", nBitErrors, ((float)nBitErrors/counter)*100.0);
