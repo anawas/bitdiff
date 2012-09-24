@@ -55,7 +55,7 @@ void printBitArray() {
 	fprintf(stdout, "\n");
 
 	for (i = 0; i < 8; i++) {
-		fprintf(stdout, " %ld |", bitArray[i]);
+		fprintf(stdout, " %d |", bitArray[i]);
 		nErrors += bitArray[i];
 	}	
 
@@ -87,7 +87,7 @@ BOOL bitsEqual (uint8_t value1, uint8_t value2) {
 		if ((value1 & 0x1) != (value2 & 0x1)) {
 			if (isEqual) {
 				if (verbose) {
-					printf("\n\nBit error in byte %ld\n", counter);
+					printf("\n\nBit error in byte %u\n", counter);
 					printf("Different bits at position: ");
 				}
 				isEqual = NO;
@@ -276,7 +276,7 @@ int compareFileLength(NSString *fname1, NSString *fname2) {
 				printf("but found: %s (%c)", [[NSString  stringWithString: convertToBinary(charBuf2[0])] UTF8String], charBuf2[0]);
 			}
 			
-			sprintf(message, "<<< Difference! Should be %c\n\0", charBuf1[0]);
+			sprintf((char *)message, "<<< Difference! Should be %c\n", charBuf1[0]);
 			[logfile write:message maxLength:30];
 			
 			if (stopp) {
@@ -291,7 +291,7 @@ int compareFileLength(NSString *fname1, NSString *fname2) {
 	[origFile close];
 	[rescanFile close];
 	
-	fprintf(stdout, "\n\nBytes compared: %ld\n", counter);
+	fprintf(stdout, "\n\nBytes compared: %u\n", counter);
 	
 	if (nBitErrors != 0) {
 		fprintf(stdout, "%d bytes with bit error(s) detected (%2.2f%%)\n\n", nBitErrors, ((float)nBitErrors/counter)*100.0);
