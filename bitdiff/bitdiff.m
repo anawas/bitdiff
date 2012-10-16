@@ -15,7 +15,7 @@
 #import <stdio.h>
 
 static char version[] = "This is bitdiff Version 1.1";
-static char build[]		= "build:20092012:1600";
+static char build[]		= "build:20121610:1200";
 static char usage[]		= "\nusage: bitdiff [-v | -stat | -stop] file1 file2\n";
 
 uint32_t bitArray[8];
